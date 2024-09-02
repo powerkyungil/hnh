@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+}
+.title {
+    background-color: blanchedalmond;
+    margin-bottom: 5px;
+    padding: 20px 10px 20px 10px;
+}
+.title-text {
+    margin: 0;
+}
+.item {
+    padding: 10px;
+}
