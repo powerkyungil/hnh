@@ -9,12 +9,14 @@
 </head>
 <script>
     function userJoin() {
-        window.location.href = 'user/userJoin.php';
+        window.location.href = 'view/item/herenothere/user/userJoin.php';
     }
 </script>
 <body>
   <h1>로그인</h1>
   <form action="route.php" method="post">
+     <input type="hidden" id="type" name="type" value="user/User">
+     <input type="hidden" id="route" name="route" value="sign_in">
     <input type="text" id="userId" placeholder="아이디를 입력하세요.">
     <input type="text" id="password" placeholder="비밀번호를 입력하세요.">
   </form>

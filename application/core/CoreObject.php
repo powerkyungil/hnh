@@ -37,8 +37,9 @@ class CoreObject
       }
 
       $stmt = $pdo->prepare($query);
+
       foreach ($params as $key => $param) {
-        $stmt->bindParam(':param'.$key, $param);
+        $stmt->bindValue(':param'.$key, $param);
       }
       $stmt->execute();
 

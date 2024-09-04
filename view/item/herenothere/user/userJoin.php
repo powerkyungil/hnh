@@ -41,7 +41,7 @@
   <h1>회원가입</h1>
   <form id="userForm">
     <input type="hidden" id="type" name="type" value="user/User">
-    <input type="hidden" id="route" name="route" value="userJoin">
+    <input type="hidden" id="route" name="route" value="join">
     <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요.">
     <input type="text" id="password" name="password" placeholder="비밀번호를 입력하세요.">
     <input type="text" id="re_password" name="re_password" placeholder="확인 비밀번호를 입력하세요.">
