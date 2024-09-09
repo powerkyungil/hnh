@@ -10,12 +10,12 @@ class CoreObject
   {
   }
 
-  function connectDb($query, $params = [])
+  function connectDb($query, $params = [], $type = 'select')
   {
-    $host = 'localhost';    // 서버 호스트명
-    $db   = 'hnh';  // 데이터베이스 이름
+    $host = 'hnh-mysql.c34img4qg22i.ap-northeast-2.rds.amazonaws.com';    // 서버 호스트명
+    $db   = 'hnhdb';  // 데이터베이스 이름
     $user = 'root';         // 데이터베이스 사용자명
-    $pass = '1323';             // 데이터베이스 비밀번호 (기본적으로 비어있을 수 있음)
+    $pass = 'jmsjms43!';             // 데이터베이스 비밀번호 (기본적으로 비어있을 수 있음)
     $charset = 'utf8mb4';   // 문자셋 설정
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset"; // DSN(Data Source Name) 설정
@@ -43,7 +43,11 @@ class CoreObject
       }
       $stmt->execute();
 
-      return $stmt;
+      if ($type == 'select') {
+        return $stmt;
+      } else {
+        return $stmt->rowCount();
+      }
 
     } catch (PDOException $e) {
       echo 'Connection failed: ' . $e->getMessage();

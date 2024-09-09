@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT']."/chickendoc/application/default.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/chickendoc/application/function/default_func.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/hnh/application/default.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/hnh/application/function/default_func.php";
 
 $menu = $_GET['menu']?? "";
 

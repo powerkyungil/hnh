@@ -11,7 +11,7 @@ $__main_url__ = $_SERVER["SERVER_NAME"];
 // 메인 url
 define( "__MAIN_URL",		"http://".$__main_url__ );
 // 홈 디렉토리 변수 설정
-define( "__MAP_PATH",		$_SERVER["DOCUMENT_ROOT"]."/chickendoc" );
+define( "__MAP_PATH",		$_SERVER["DOCUMENT_ROOT"] );
 
 //시스템 쿼리/에러 메세지 출력
 define( "__ECHO_MSG",		1 );
