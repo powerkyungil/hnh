@@ -24,3 +24,8 @@ function apiErrorResponse($code, $msg, $err_code = "ERROR") {
   return $result;
 }
 
+function echoadmin( $text ) {
+//    if ( is_admin() )
+        echo "<p style='background-color:black;color:white;padding:10 10 10 10;'>".$text."</p>";
+}
+

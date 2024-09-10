@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+#RewriteEngine On
+#RewriteRule ^api/([^/]*)/([^/]*)$ /api/main.php?g=$1&m=$2 [L]
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . main.php [L]
+</IfModule>

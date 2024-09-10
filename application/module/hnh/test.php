@@ -4,10 +4,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-//include $_SERVER['DOCUMENT_ROOT']."/hnh/application/module/hnh/user/User.php";
+//include $_SERVER['DOCUMENT_ROOT']. "/hnh/application/function/default_func.php";
+//include $_SERVER['DOCUMENT_ROOT']."/hnh/application/module/hnh/user/user.php";
 //$user = new User();
-//$data = ['userId'=>"test09", 'password'=>"1323", 're_password'=>"1323"];
-//$result = $user->userJoin($data);
+//$data = ['userId'=>"test01", 'password'=>"1234"];
+//$result = $user->userSignIn($data);
+//echoadmin(json_encode($result));
 //print_r($result);
 
 //include $_SERVER['DOCUMENT_ROOT']."/hnh/application/core/CoreObject.php";

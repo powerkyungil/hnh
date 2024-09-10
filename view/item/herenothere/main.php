@@ -1,5 +1,5 @@
 <?php
-session_start(); // 세션 시작
+
 ?>
 
 <!doctype html>
@@ -21,15 +21,25 @@ session_start(); // 세션 시작
         $('#userSignIn').on('submit', function(event) {
             event.preventDefault(); // 폼의 기본 제출 동작을 막음 (페이지 이동 방지)
 
+            data = {
+                type: $('#type').val();
+                route: $('#route').val();
+                userId: $('#userId').val();
+                password: $('#password').val();
+            }
+
             $.ajax({
-                url: 'view/item/herenothere/route.php', // 요청을 보낼 URL
-                type: 'GET',
-                data: $(this).serialize(),
+                url: 'http://localhost/hnh/api/hnh/user/join', // 요청을 보낼 URL
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
                 success: function(response) {
                     var data = JSON.parse(response);  // JSON 응답을 파싱
 
                     if (data.result === "SUCCESS") {
-                        location.replace('main.php'); // 로그인 성공 시 메인 페이지로 이동
+                        //location.replace('main.php'); // 로그인 성공 시 메인 페이지로 이동
+                        $('#responseMessage').text(data.message);
                     } else {
                         $('#responseMessage').text(data.message); // 실패 시 에러 메시지 표시
                     }
@@ -42,6 +52,7 @@ session_start(); // 세션 시작
                     $('#responseMessage').text('오류 발생: ' + error);
                 }
             });
+            return false;
         });
     });
 </script>

@@ -1,4 +1,6 @@
 <?php
+session_start(); // 세션 시작
+
 include_once $_SERVER['DOCUMENT_ROOT']."/hnh/application/default.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/hnh/application/function/default_func.php";
 
@@ -12,7 +14,10 @@ function includeHeader($menu)
 }
 
 includeHeader($menu);
-
+print_r($_GET);
+if ($_SESSION['userSid'] != "") {
+    include "view/item/herenothere/main.php";
+}
 
 if ($menu == 'PDF') {
     include "view/item/transPDF.php";

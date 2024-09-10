@@ -13,6 +13,10 @@ define( "__MAIN_URL",		"http://".$__main_url__ );
 // 홈 디렉토리 변수 설정
 define( "__MAP_PATH",		$_SERVER["DOCUMENT_ROOT"] );
 
+$system_path = __MAP_PATH."/application";
+// 모듈 디렉토리
+define('__MODULE_PATH',	$system_path . "/module/hnh" );
+
 //시스템 쿼리/에러 메세지 출력
 define( "__ECHO_MSG",		1 );
 
