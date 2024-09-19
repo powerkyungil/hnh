@@ -18,14 +18,15 @@
     }
 
     $(document).ready(function() {
-        $('#userSignIn').on('submit', function(event) {
+        $('#userSignIn').on('click', function(event) {
+            console.log('test');
             event.preventDefault(); // 폼의 기본 제출 동작을 막음 (페이지 이동 방지)
 
-            data = {
-                type: $('#type').val();
-                route: $('#route').val();
-                userId: $('#userId').val();
-                password: $('#password').val();
+            var data = {
+                type: $('#type').val(),
+                route: $('#route').val(),
+                userId: $('#userId').val(),
+                password: $('#password').val()
             }
 
             $.ajax({
@@ -33,7 +34,7 @@
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify(data)
+                data: JSON.stringify(data),
                 success: function(response) {
                     var data = JSON.parse(response);  // JSON 응답을 파싱
 
@@ -58,13 +59,11 @@
 </script>
 <body>
 <h1>로그인</h1>
-<form id="userSignIn">
     <input type="hidden" id="type" name="type" value="user/User">
     <input type="hidden" id="route" name="route" value="sign_in">
     <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요.">
     <input type="text" id="password" name="password" placeholder="비밀번호를 입력하세요.">
-    <button type="submit">로그인</button>
-</form>
+<button type='button' id="userSignIn">로그인</button>
 <button type="button" onclick="userJoin()">회원가입하기</button>
 <div id="responseMessage"></div>
 </body>

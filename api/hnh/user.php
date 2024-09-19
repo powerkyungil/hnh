@@ -1,4 +1,5 @@
 <?php
+include_once $_SERVER['DOCUMENT_ROOT'] . "/hnh/application/default.php";
 // 회원
 include_once __MODULE_PATH."/user/User.php";
 $user = new User();
@@ -6,13 +7,13 @@ $user = new User();
 switch ($act) {
     // 로그인
     case '/user/join':
-        chkInvalidMethod($request, 'POST');
+        chkInvalidMethod($reqMethod, 'POST');
         $result = $user->userJoin($data);
         break;
 
     // 회원가입
-    case 'user/signin':
-        chkInvalidMethod($request, "POST");
+    case '/user/signin':
+        chkInvalidMethod($reqMethod, "POST");
         $result = $user->userSignIn($data);
         break;
 }

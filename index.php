@@ -15,20 +15,22 @@ function includeHeader($menu)
 
 includeHeader($menu);
 print_r($_GET);
-if ($_SESSION['userSid'] != "") {
-    include "view/item/herenothere/main.php";
+if ($_GET['userId'] != "") {
+    include "view/item/herenothere/mainPage.php";
+} else {
+    if ($menu == 'PDF') {
+        include "view/item/transPDF.php";
+    } elseif ($menu == 'check') {
+        include "view/item/textCheck.php";
+    } elseif ($menu == 'portfolio') {
+        include "view/item/portfolio.php";
+    } elseif ($menu == 'hnh') {
+        include "view/item/herenothere/main.php";
+    } else {
+        include "view/item/list.php";
+    }
 }
 
-if ($menu == 'PDF') {
-    include "view/item/transPDF.php";
-} elseif ($menu == 'check') {
-    include "view/item/textCheck.php";
-} elseif ($menu == 'portfolio') {
-    include "view/item/portfolio.php";
-} elseif ($menu == 'hnh') {
-    include "view/item/herenothere/main.php";
-} else {
-    include "view/item/list.php";
-}
+
 
 ?>
