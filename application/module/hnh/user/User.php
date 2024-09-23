@@ -1,7 +1,7 @@
 <?php
 
-//include $_SERVER['DOCUMENT_ROOT']. "/hnh/application/function/default_func.php";
-include $_SERVER['DOCUMENT_ROOT']. "/hnh/application/core/CoreObject.php";
+//include $_SERVER['DOCUMENT_ROOT']. "/application/function/default_func.php";
+include $_SERVER['DOCUMENT_ROOT']. "/application/core/CoreObject.php";
 
 class User extends CoreObject
 {
