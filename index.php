@@ -14,8 +14,8 @@ function includeHeader($menu)
 }
 
 includeHeader($menu);
-print_r($_GET);
-if ($_GET['userId'] != "") {
+
+if (isset($_GET['userId']) && $_GET['userId'] != "") {
     include "view/item/herenothere/mainPage.php";
 } else {
     if ($menu == 'PDF') {
