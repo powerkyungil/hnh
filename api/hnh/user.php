@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/hnh/application/default.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/application/default.php";
 // 회원
 include_once __MODULE_PATH."/user/User.php";
 $user = new User();
