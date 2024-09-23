@@ -20,7 +20,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 if (!defined('JSON_UNESCAPED_UNICODE'))	define( "JSON_UNESCAPED_UNICODE"	, 256 );
 if (!defined('JSON_UNESCAPED_SLASHES'))	define( "JSON_UNESCAPED_SLASHES"	, 64 );
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/hnh/application/function/default_func.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/application/function/default_func.php";
 
 // default response
 $result = array();
@@ -57,8 +57,11 @@ $data = json_decode( $tmp, true );
 //errorLog( "[".$reqMethod."] " . $_SERVER['REMOTE_ADDR'] . " / " . $_SERVER['REQUEST_URI'] );
 
 // api URI 배열 정보.  /api/member/info/{id} -> array( 'member', 'info', '3' )
-$uris = explode( "?", $_SERVER['REQUEST_URI'] );
-$acts = explode( "/", str_replace( "/hnh/api/hnh/", "", $uris[0] ) );	// /api 제거
+// $uris = explode( "?", $_SERVER['REQUEST_URI'] );
+// $acts = explode( "/", str_replace( "/hnh/api/hnh/", "", $uris[0] ) );	// /api 제거
+// URI에서 쿼리 문자열 추출
+$query = isset($_GET['q']) ? $_GET['q'] : '';
+$acts = explode('/', $query);
 $act = "/".$acts[0]."/".$acts[1];
 
 //echoadm( 'act => ' . $act . " / " . json_encode($acts));
@@ -91,7 +94,7 @@ function chkInvalidMethod($reqMethod, $expectedMethod)
 }
 
 // API 처리 부분 include
-include_once $_SERVER['DOCUMENT_ROOT']."/hnh/api/hnh/".$acts[0].".php";
+include_once $_SERVER['DOCUMENT_ROOT']."/api/hnh/".$acts[0].".php";
 
 // 결과 로그 미생성 항목
 // $exclude_logs = ['/calendar/info', '/board/view', '/board/main', '/board/notice', '/board/comment', '/calendar/info', 'document/file', '/document/download', '/education/add', '/education/detail', '/education/update', '/education/download', '/employee/list' ];
