@@ -1,8 +1,8 @@
 <?php
 session_start(); // 세션 시작
 
-include_once $_SERVER['DOCUMENT_ROOT']."/hnh/application/default.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/hnh/application/function/default_func.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/application/default.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/application/function/default_func.php";
 
 $menu = $_GET['menu']?? "";
 
