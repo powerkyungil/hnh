@@ -4,7 +4,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method == 'GET') $data = $_GET;
 else $data = $_POST;
 
-include_once $_SERVER['DOCUMENT_ROOT']. "/hnh/application/module/hnh/".$data['type'].".php";
+include_once $_SERVER['DOCUMENT_ROOT']. "/application/module/hnh/".$data['type'].".php";
 
 switch ($data['route']) {
   case 'join':
