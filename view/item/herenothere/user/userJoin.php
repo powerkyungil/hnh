@@ -12,6 +12,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+<link rel="stylesheet" href="/hnh/css/default.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -38,15 +39,17 @@
 </script>
 
 <body>
-  <h1>회원가입</h1>
-  <form id="userForm">
-    <input type="hidden" id="type" name="type" value="user/User">
-    <input type="hidden" id="route" name="route" value="join">
-    <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요.">
-    <input type="text" id="password" name="password" placeholder="비밀번호를 입력하세요.">
-    <input type="text" id="re_password" name="re_password" placeholder="확인 비밀번호를 입력하세요.">
-    <button type="submit">가입하기</button>
-  </form>
+  <div class="login-container">
+        <h1>회원가입</h1>
+        <form id="userForm" autocomplete="off">
+          <input type="hidden" id="type" name="type" value="user/User">
+          <input type="hidden" id="route" name="route" value="join">
+          <input type="text" class="input-field" id="userId" name="userId" placeholder="아이디를 입력하세요.">
+          <input type="password" class="input-field" id="password" name="password" placeholder="비밀번호를 입력하세요.">
+          <input type="password" class="input-field" id="re_password" name="re_password" placeholder="다시 한번 비밀번호를 입력하세요.">
+          <button id="login-btn" class="login-btn">가입하기</button>
+        </form>
+    </div>
   <div id="responseMessage"></div>
 </body>
 </html>

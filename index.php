@@ -8,12 +8,12 @@ $menu = $_GET['menu']?? "";
 
 
 // index.php
-function includeHeader($menu)
-{
-    include "view/layout/header.php";
-}
+// function includeHeader($menu)
+// {
+//     include "view/layout/header.php";
+// }
 
-includeHeader($menu);
+// includeHeader($menu);
 
 if (isset($_GET['userId']) && $_GET['userId'] != "") {
     include "view/item/herenothere/mainPage.php";
