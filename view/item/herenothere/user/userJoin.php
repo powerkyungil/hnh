@@ -107,8 +107,8 @@
           <input type="text" class="input-field" id="userId" name="userId" placeholder="아이디를 입력하세요.">
           <input type="password" class="input-field" id="password" name="password" placeholder="비밀번호를 입력하세요.">
           <input type="password" class="input-field" id="re_password" name="re_password" placeholder="다시 한번 비밀번호를 입력하세요.">
+          <div id="responseMessage" style="color: red; margin-top: 3px;"></div>
           <button id="login-btn" class="login-btn">가입하기</button>
-          <div id="responseMessage"></div>
         </form>
     </div>
 </body>

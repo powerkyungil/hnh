@@ -65,7 +65,7 @@
         <input type="hidden" id="route" name="route" value="sign_in">
         <input type="text" class="input-field" id="userId" name="userId" placeholder="이메일 또는 휴대폰 번호">
         <input type="password" class="input-field" id="password" name="password" placeholder="비밀번호">
-        <div id="responseMessage" style='color: red;'></div>
+        <div id="responseMessage" style='color: red; margin-top: 3px;'></div>
         <button id="login-btn" class="login-btn">로그인</button>
         <div class="link">
             <a href="#">비밀번호 찾기</a> | <a href="/view/item/herenothere/user/userJoin.php">회원가입</a>
