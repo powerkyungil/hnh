@@ -1,8 +1,8 @@
 <?php
-print_r($_POST);
-print_r($_GET);
-include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/user/user.php";
-$user = new User();
+// print_r($_POST);
+// print_r($_GET);
+// include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/user/user.php";
+// $user = new User();
 ?>
 
 <!DOCTYPE html>
