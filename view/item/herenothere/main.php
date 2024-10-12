@@ -37,7 +37,7 @@
                         try {
                             // data를 사용하는 코드
                             if (response.result === "SUCCESS") {
-                                location.href = '/view/item/herenothere/mainPage.php'; // 로그인 성공 시 메인 페이지로 이동
+                                location.href = '/view/item/herenothere/adminMain.php'; // 로그인 성공 시 메인 페이지로 이동
                             } else {
                                 $('#responseMessage').text(response.message); // 실패 시 에러 메시지 표시
                             }
