@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $('#myModal').hide();
+
     // 모달 열기
     $('.manage-btn').on('click', function() {
         $('#myModal').fadeIn(); // 모달을 페이드 인 효과로 표시
