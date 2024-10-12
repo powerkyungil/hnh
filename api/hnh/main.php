@@ -31,15 +31,15 @@ $result['message'] = "";
 $headers = apache_request_headers();
 
 // 컨텐츠 타입이 JSON 인지 확인
-if ( !in_array('application/json',explode(';',$_SERVER['CONTENT_TYPE'])) )
-{
-    $result['result'] = "ERROR";
-    http_response_code(400);
-    $result['message'] = "Content-type error";
+// if ( !in_array('application/json',explode(';',$_SERVER['CONTENT_TYPE'])) )
+// {
+//     $result['result'] = "ERROR";
+//     http_response_code(400);
+//     $result['message'] = "Content-type error";
 
-    echo json_encode($result);//, JSON_UNESCAPED_UNICODE); // Forbidden
-    exit;
-}
+//     echo json_encode($result);//, JSON_UNESCAPED_UNICODE); // Forbidden
+//     exit;
+// }
 
 // 요청 메서드
 $reqMethod = $_SERVER['REQUEST_METHOD'];
@@ -50,9 +50,13 @@ $reqMethod = $_SERVER['REQUEST_METHOD'];
 //include_once __MODULE_PATH."/member/user.php";
 //$user = new User($jwt);
 
-// PHP 를 사용해 POST/PUT 로 JSON 데이터를 받았을 때 처리
-$tmp = file_get_contents("php://input");
-$data = json_decode( $tmp, true );
+if ($reqMethod == 'GET') {
+  $data = $_GET;
+} else {
+  // PHP 를 사용해 POST/PUT 로 JSON 데이터를 받았을 때 처리
+  $tmp = file_get_contents("php://input");
+  $data = json_decode( $tmp, true );
+}
 
 //errorLog( "[".$reqMethod."] " . $_SERVER['REMOTE_ADDR'] . " / " . $_SERVER['REQUEST_URI'] );
 

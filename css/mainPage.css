@@ -76,6 +76,20 @@ header {
     font-size: small;
 }
 
+.emp-btn {
+    border: 1px solid white;
+    border-radius: 8px;
+    width: 80%;
+    font-family: 'DungGeunMo';
+    background-color: black;
+    color: #4CAF50;
+    padding: 15px;
+    font-size: 18px;
+    margin: 20px auto;
+    cursor: pointer;
+    display: block;
+}
+
 
 
 

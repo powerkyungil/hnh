@@ -1,7 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/employee/Employee.php";
 $employee = new Employee();
-$emp_list = $employee->empList($_GET);
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,9 @@ $emp_list = $employee->empList($_GET);
 </head>
 <script>
     $(document).ready(function() {
-
+        $("#here").click(function() {
+            location.href = '/view/item/herenothere/here/here.php';
+        });
     });
 </script>
 <body>
@@ -26,28 +28,12 @@ $emp_list = $employee->empList($_GET);
         <div class="current-time"><?php echo date("Y-m-d H:i:s"); ?></div>
     </header>
 
-    <div class="status-container">
-        <?php foreach ($emp_list['data'] as $emp) {
-            if ($emp['work_status'] == 'HERE') {
-        ?>
-            <div class="employee-card">
-                <div class="employee-name"><?php echo $emp['name'] ?></div>
-                <div class="status in">출근 중</div>
-                <div class="time"><?php echo $emp['here_time'] ?></div>
-            </div>
-            <?php } else { ?>
-                <div class="employee-card">
-                    <div class="employee-name"><?php echo $emp['name'] ?></div>
-                    <div class="status out">퇴근</div>
-                    <div class="time"><?php echo $emp['here_time'] ?></div>
-                </div>
-            <?php } ?>
-        <?php } ?>
-
-        <!-- 직원 목록 추가 가능 -->
+    <div class="container">
+        <div class="here-card">
+            <button id="here" class="emp-btn">출석 체크</button>
+            <button class="emp-btn manage-btn">출퇴근 기록</button>
+        </div>
     </div>
-
-    <button class="manage-btn">직원 관리</button>
 
     <!-- 모달 구조 -->
     <div id="myModal" class="modal">

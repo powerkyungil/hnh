@@ -64,16 +64,15 @@ class User extends CoreObject
       'user_type'=>$data['user_type'],
       'name'=>$data['name'],
       'company_code'=>$company_code,
-      'join_type'=>$data['join_type'],
-      'work_status'=>$data['work_status'],
-      'job_status'=>$data['job_status'],
+      'join_type'=>"NORMAL",
+      'work_status'=>"NOTHERE",
+      'job_status'=>"WORK",
       'company_nm'=>$data['company_nm'],
       'company_addr1'=>$data['company_addr1'],
       'company_addr2'=>$data['company_addr2'],
       'company_lat'=>$data['company_lat'],
       'company_lon'=>$data['company_lon'],
-      'reg_dt'=>date("Y-m-d H:i:s"),
-      'last_join'=>""
+      'reg_dt'=>date("Y-m-d H:i:s")
     ];
     $row = $this->insert("user", $inserts);
 
@@ -88,6 +87,7 @@ class User extends CoreObject
     return $result;
   }
 
+  // 로그인
   function userSignIn($data)
   {
     if ($data['userId'] == "" || $data['password'] == "") {
@@ -104,6 +104,7 @@ class User extends CoreObject
       $result['result'] = "SUCCESS";
       $result['message'] = "로그인 성공";
       $result['data']['userSid'] = $user_row['sid'];
+      $result['data']['company_code'] = $user_row['company_code'];
     } else {
       $result['result'] = "FAIL";
       $result['message'] = "존재하지 않는 아이디 입니다.";

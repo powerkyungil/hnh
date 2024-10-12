@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/hnh/application/module/hnh/hnh.php";
+include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/hnh.php";
 $hnh = new Hnh();
 $company = [35.992264,128.399989];
 $location = [35.9858176,128.401408];
