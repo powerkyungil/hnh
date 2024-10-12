@@ -12,52 +12,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>출퇴근 관리</title>
     <link rel="stylesheet" href="/css/mainPage.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
 <body>
 
     <header>
-        <h1>주식회사망치꽁</h1>
+        <h1>주식회사 경일버스</h1>
         <div class="current-time"><?php echo date("Y-m-d H:i:s"); ?></div>
     </header>
 
     <div class="status-container">
         <div class="employee-card">
-            <div class="employee-name">오유진</div>
+            <div class="employee-name">직원1</div>
             <div class="status in">출근 중</div>
             <div class="time">2024-10-06 08:48:10</div>
         </div>
         <div class="employee-card">
-            <div class="employee-name">김경일</div>
+            <div class="employee-name">직원2</div>
             <div class="status in">출근 중</div>
             <div class="time">2024-10-06 08:45:22</div>
         </div>
         <div class="employee-card">
-            <div class="employee-name">유깽이</div>
+            <div class="employee-name">직원3</div>
             <div class="status out">퇴근</div>
             <div class="time">2024-10-05 18:00:30</div>
         </div>
         <div class="employee-card">
-            <div class="employee-name">꽁꽁이</div>
+            <div class="employee-name">직원4</div>
             <div class="status out">퇴근</div>
             <div class="time">2024-10-05 18:01:14</div>
         </div>
         <div class="employee-card">
-            <div class="employee-name">런던이</div>
+            <div class="employee-name">직원5</div>
             <div class="status in">출근 중</div>
             <div class="time">2024-10-06 08:48:10</div>
         </div>
         <div class="employee-card">
-            <div class="employee-name">쁘니</div>
+            <div class="employee-name">직원6</div>
             <div class="status in">출근 중</div>
             <div class="time">2024-10-06 08:45:22</div>
         </div>
         <div class="employee-card">
-            <div class="employee-name">귀요미</div>
+            <div class="employee-name">직원7</div>
             <div class="status out">퇴근</div>
             <div class="time">2024-10-05 18:00:30</div>
         </div>
         <div class="employee-card">
-            <div class="employee-name">앵두야</div>
+            <div class="employee-name">직원8</div>
             <div class="status out">퇴근</div>
             <div class="time">2024-10-05 18:01:14</div>
         </div>
@@ -65,6 +72,18 @@
     </div>
 
     <button class="manage-btn">직원 관리</button>
+
+    <!-- 모달 구조 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>안내</h2>
+            <p>추후 추가 예정입니다.</p>
+            <button id="cancel-btn">확인</button>
+        </div>
+    </div>
+
+    <script src="/js/modal.js"></script>
 
 </body>
 </html>

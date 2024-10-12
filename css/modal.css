@@ -1,0 +1,75 @@
+/* 모달 창의 배경 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1; /* 가장 앞쪽에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    overflow: auto; /* 화면이 작을 때 스크롤 허용 */
+}
+
+/* 모달 창 내부 콘텐츠 */
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 10% auto; /* 상단에서 10% 떨어짐 */
+    padding: 20px;
+    width: 80%; /* 기본적으로 화면의 80% 너비 */
+    max-width: 600px; /* 최대 너비는 600px로 제한 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* 닫기 버튼 */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button#cancel-btn {
+    background-color: #dc3545;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* 반응형 모달: 화면 크기에 따라 너비 조정 */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* 화면이 768px 이하일 때는 90% 너비로 확장 */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-content {
+        width: 95%; /* 화면이 480px 이하일 때는 95% 너비로 확장 */
+        margin: 20% auto; /* 작은 화면에서 상단 여백을 더 확보 */
+    }
+
+    .close {
+        font-size: 20px; /* 닫기 버튼 크기 조정 */
+    }
+
+    button {
+        width: 100%; /* 버튼의 너비를 100%로 설정하여 모바일에서 보기 좋게 */
+        margin: 5px 0; /* 버튼 간의 간격 좁힘 */
+    }
+}
