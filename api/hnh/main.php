@@ -57,11 +57,11 @@ $data = json_decode( $tmp, true );
 //errorLog( "[".$reqMethod."] " . $_SERVER['REMOTE_ADDR'] . " / " . $_SERVER['REQUEST_URI'] );
 
 // api URI 배열 정보.  /api/member/info/{id} -> array( 'member', 'info', '3' )
-// $uris = explode( "?", $_SERVER['REQUEST_URI'] );
-// $acts = explode( "/", str_replace( "/hnh/api/hnh/", "", $uris[0] ) );	// /api 제거
+$uris = explode( "?", $_SERVER['REQUEST_URI'] );
+$acts = explode( "/", str_replace( "/api/hnh/", "", $uris[0] ) );	// /api 제거
 // URI에서 쿼리 문자열 추출
-$query = isset($_GET['q']) ? $_GET['q'] : '';
-$acts = explode('/', $query);
+// $query = isset($_GET['q']) ? $_GET['q'] : '';
+// $acts = explode('/', $query);
 $act = "/".$acts[0]."/".$acts[1];
 
 //echoadm( 'act => ' . $act . " / " . json_encode($acts));
