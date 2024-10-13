@@ -24,7 +24,7 @@ $employee = new Employee();
 <body>
 
     <header>
-        <h1>주식회사 경일버스</h1>
+        <h1 style="color: #F2F2F2;">움매컴퍼니</h1>
         <div class="current-time"><?php echo date("Y-m-d H:i:s"); ?></div>
     </header>
 

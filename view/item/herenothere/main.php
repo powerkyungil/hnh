@@ -71,7 +71,9 @@
 <body>
 
     <div class="login-container">
-        <h1>로그인</h1>
+        <div class="title">
+            <h1 class="point-txt" style="color: #BAF266;">H</h1><h1>ere </h1> <h1 class="point-txt" style="color: #BAF266;"> N</h1><h1>ot </h1> <h1 class="point-txt" style="color: #BAF266;"> H</h1><h1>ere</h1>
+        </div>
         <input type="hidden" id="type" name="type" value="user/User">
         <input type="hidden" id="route" name="route" value="sign_in">
         <input type="text" class="input-field" id="userId" name="userId" placeholder="이메일 또는 휴대폰 번호">

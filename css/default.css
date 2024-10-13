@@ -4,10 +4,17 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'NoonnuBasicGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: 'DungGeunMo';
-    background-color: black;
-    color: #4CAF50;
+    font-family: 'NoonnuBasicGothicRegular';
+    background-color: #0D0D0D;
+    color: #F2F2F2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +22,7 @@ body {
     margin: 0;
 }
 .login-container {
-    background-color: black;
+    background-color: #0D0D0D;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -27,7 +34,7 @@ body {
     margin-bottom: 20px;
 }
 .input-field {
-    font-family: 'DungGeunMo';
+    font-family: 'NoonnuBasicGothicRegular';
     width: 100%;
     padding: 12px;
     margin: 8px 0;
@@ -40,10 +47,11 @@ body {
     border-color: #0066FF;
     outline: none;
 }
-.login-btn {
+.login-btn, .next-btn, .back-btn, .join-btn {
+    font-family: NoonnuBasicGothicRegular;
     width: 100%;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #595959;
+    color: #F2F2F2;
     padding: 14px;
     border: none;
     border-radius: 4px;
@@ -51,18 +59,29 @@ body {
     cursor: pointer;
     margin-top: 20px;
 }
+.between-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+.between-btn {
+    width: 48%;
+}
 .login-btn:hover {
-    background-color: #4CAF50;
+    background-color: #595959;
 }
 .link {
     text-align: center;
-    color: #808080;
+    color: #595959;
     font-size: 14px;
     margin-top: 10px;
 }
 .link a {
-    color: #808080;
+    color: #595959;
     text-decoration: none;
+}
+.title {
+    display: flex;
+    justify-content: center;
 }
 
 .user-type-container {
@@ -75,7 +94,7 @@ body {
 .user-type-box {
     flex: 1;
     padding: 20px;
-    border: 2px solid #ccc;
+    border: 2px solid #BAF266;
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
@@ -88,9 +107,9 @@ body {
 }
 
 .user-type-box.active {
-    background-color: #4CAF50;
-    color: #fff;
-    border-color: #4CAF50;
+    background-color: #BAF266;
+    color: #0D0D0D;
+    border-color: #BAF266;
 }
 
 button {

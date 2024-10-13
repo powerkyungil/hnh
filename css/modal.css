@@ -1,7 +1,7 @@
 /* 모달 창의 배경 */
 @font-face {
-    font-family: 'DungGeunMo';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+    font-family: 'NoonnuBasicGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -23,9 +23,9 @@
 
 /* 모달 창 내부 콘텐츠 */
 .modal-content {
-    font-family: 'DungGeunMo';
+    font-family: 'NoonnuBasicGothicRegular';
     position: relative;
-    background-color: #fff;
+    background-color: #F2F2F2;
     padding: 20px;
     width: 80%;
     max-width: 600px;
@@ -48,10 +48,11 @@
     margin: 10px;
     padding: 10px 20px;
     border: none;
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: #BAF266;
+    color: #0D0D0D;
     border-radius: 4px;
     cursor: pointer;
+    font-family: 'NoonnuBasicGothicRegular';
 }
 
 /* 반응형 모달 */

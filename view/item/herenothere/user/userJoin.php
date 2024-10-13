@@ -39,12 +39,55 @@
                 class: "input-field",
                 name: "company_code",
                 type: "text",
-                placeholder: "회사 코드를 입력하세요"
+                placeholder: "회사 코드를 입력하세요."
             });
 
             $(".user-type-container").after(newInput);
           }
         });
+
+        $(".join_step2").hide();
+
+        $(".next-btn").click(function() {
+          event.preventDefault(); // 폼 전송 막기
+
+          var name = $("#name").val();
+          var userId = $("#userId").val();
+          var password = $("#password").val();
+          var re_password = $("#re_password").val();
+          var user_type = $("#user_type").val();
+          var company_code = $("#company_code").val().trim();
+
+          console.log(user_type);
+          if (user_type == "" ) {
+            $('#responseMessage').text("가입 유형을 선택해 주세요.");
+          } else if (user_type == 'EMPLOYEE') {
+            console.log(company_code);
+            if (company_code == "") {
+              console.log("2222");
+              $('#responseMessage').text("회사코드를 입력해 주세요.");
+              return;
+            }
+          }
+
+          if (name == "") {
+            $('#responseMessage').text("이름을 입력해 주세요.");
+          } else if (userId == "") {
+            $('#responseMessage').text("아이디를 입력하세요.");
+          } else if (password == "") {
+            $('#responseMessage').text("비밀번호를 입력해 주세요.");
+          } else if (re_password == "") {
+            $('#responseMessage').text("비밀번호를 입력해 주세요.");
+          } else {
+            $(".join_step1").hide();
+            $(".join_step2").show();
+          }
+        });
+
+        $(".back-btn").click(function() {
+          $(".join_step1").show();
+          $(".join_step2").hide();
+        })
 
         // 폼 제출 시 선택 여부 확인
         $('#signupForm').on('submit', function(event) {
@@ -54,7 +97,7 @@
           }
         });
 
-        $('#userForm').on('submit', function(event) {
+        $('#join-btn').click('submit', function(event) {
             event.preventDefault(); // 폼의 기본 제출 동작을 막음 (페이지 이동 방지)
 
             var data = {
@@ -94,22 +137,39 @@
 
 <body>
   <div class="login-container">
-        <h1>회원가입</h1>
-        <form id="userForm" autocomplete="off">
-          <input type="hidden" id="type" name="type" value="user/User">
-          <input type="hidden" id="route" name="route" value="join">
-          <div class="user-type-container">
-            <div class="user-type-box" id="adminBox" data-value="admin">관리자</div>
-            <div class="user-type-box" id="employeeBox" data-value="employee">직원</div>
-          </div>
-          <input type="hidden" id="user_type" name="user_type" value="">
-          <input type="text" class="input-field" id="name" name="name" placeholder="이름을 입력하세요.">
-          <input type="text" class="input-field" id="userId" name="userId" placeholder="아이디를 입력하세요.">
-          <input type="password" class="input-field" id="password" name="password" placeholder="비밀번호를 입력하세요.">
-          <input type="password" class="input-field" id="re_password" name="re_password" placeholder="다시 한번 비밀번호를 입력하세요.">
-          <div id="responseMessage" style="color: red; margin-top: 3px;"></div>
-          <button id="login-btn" class="login-btn">가입하기</button>
-        </form>
-    </div>
+    <h1>회원가입</h1>
+    <form id="userForm" autocomplete="off">
+      <input type="hidden" id="type" name="type" value="user/User">
+      <input type="hidden" id="route" name="route" value="join">
+
+      <div class="join_step1">
+        <div class="user-type-container">
+          <div class="user-type-box" id="adminBox" data-value="ADMIN">관리자</div>
+          <div class="user-type-box" id="employeeBox" data-value="EMPLOYEE">직원</div>
+        </div>
+        <input type="hidden" id="user_type" name="user_type" value="">
+        <input type="text" class="input-field" id="name" name="name" placeholder="이름을 입력하세요.">
+        <input type="text" class="input-field" id="userId" name="userId" placeholder="아이디를 입력하세요.">
+        <input type="password" class="input-field" id="password" name="password" placeholder="비밀번호를 입력하세요.">
+        <input type="password" class="input-field" id="re_password" name="re_password" placeholder="다시 한번 비밀번호를 입력하세요.">
+        <div id="responseMessage" style="color: red; margin-top: 3px;"></div>
+        <button id="next-btn" class="next-btn">다음</button>
+      </div>
+
+      <div class="join_step2">
+        <input type="text" class="input-field" id="addr1" name="addr1" placeholder="주소를 입력해 주세요.">
+        <input type="text" class="input-field" id="addr2" name="addr2" placeholder="상세주소를 입력해 주세요.">
+        <div id="responseMessage" style="color: red; margin-top: 3px;"></div>
+        <div class="between-btn-container">
+          <button id="back-btn" class="back-btn between-btn">돌아가기</button>
+          <button id="join-btn" class="join-btn between-btn">가입하기</button>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+
+
 </body>
 </html>

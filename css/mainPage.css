@@ -4,9 +4,15 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'NoonnuBasicGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
-    font-family: 'DungGeunMo';
-    background-color: black;
+    font-family: 'NoonnuBasicGothicRegular';
+    background-color: #0D0D0D;
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,8 +20,8 @@ body {
     height: 100vh;
 }
 header {
-    background-color: black;
-    color: #4CAF50;
+    background-color: #0D0D0D;
+    color: #BAF266;
     padding: 20px;
     text-align: center;
 }
@@ -31,7 +37,7 @@ header {
     gap: 20px;
 }
 .employee-card {
-    background-color: white;
+    background-color: #595959;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -44,6 +50,7 @@ header {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #F2F2F2;
 }
 .status {
     font-size: 20px;
@@ -51,15 +58,15 @@ header {
     margin-bottom: 10px;
 }
 .status.in {
-    color: #4CAF50;
+    color: #BAF266;
 }
 .status.out {
     color: #F44336;
 }
 .manage-btn {
-    font-family: 'DungGeunMo';
-    background-color: black;
-    color: #4CAF50;
+    font-family: 'NoonnuBasicGothicRegular';
+    background-color: #0D0D0D;
+    color: #BAF266;
     padding: 15px;
     font-size: 18px;
     border: none;
@@ -74,15 +81,16 @@ header {
 } */
 .time {
     font-size: small;
+    color: #F2F2F2;
 }
 
-.emp-btn {
-    border: 1px solid white;
+.emp-btn, .cancel-btn {
+    border: 1px solid #595959;
     border-radius: 8px;
     width: 80%;
-    font-family: 'DungGeunMo';
-    background-color: black;
-    color: #4CAF50;
+    font-family: 'NoonnuBasicGothicRegular';
+    background-color: #595959;
+    color: #F2F2F2;
     padding: 15px;
     font-size: 18px;
     margin: 20px auto;

@@ -1,7 +1,9 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/employee/Employee.php";
 $employee = new Employee();
-$emp_list = $employee->empList($_GET);
+$company_info = $employee->empList($_GET);
+$emp_list = $company_info['data']['emp_list'];
+$company_nm = $company_info['data']['company_nm'];
 ?>
 
 <!DOCTYPE html>
@@ -22,12 +24,12 @@ $emp_list = $employee->empList($_GET);
 <body>
 
     <header>
-        <h1>주식회사 경일버스</h1>
+        <h1 style="color: #F2F2F2;"><?php echo $company_nm; ?></h1>
         <div class="current-time"><?php echo date("Y-m-d H:i:s"); ?></div>
     </header>
 
     <div class="status-container">
-        <?php foreach ($emp_list['data'] as $emp) {
+        <?php foreach ($emp_list as $emp) {
             if ($emp['work_status'] == 'HERE') {
         ?>
             <div class="employee-card">
