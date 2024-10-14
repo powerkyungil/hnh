@@ -1,6 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/employee/Employee.php";
 $employee = new Employee();
+$emp_info = $employee->empInfo($_GET['userSid']);
 
 ?>
 
@@ -24,8 +25,9 @@ $employee = new Employee();
 <body>
 
     <header>
-        <h1 style="color: #F2F2F2;">움매컴퍼니</h1>
-        <div class="current-time"><?php echo date("Y-m-d H:i:s"); ?></div>
+        <h3><?php echo $emp_info['company_nm'] ?></h3>
+        <h1 style="color: #F2F2F2;"><?php echo $emp_info['name'] ?></h1>
+        <div class="current-time">마지막 출근시간 : <?php echo date("Y-m-d H:i:s"); ?></div>
     </header>
 
     <div class="container">

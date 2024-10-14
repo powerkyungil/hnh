@@ -36,6 +36,21 @@ class Employee extends CoreObject
 
     return $result;
   }
+
+  function empInfo($userSid) {
+    if ($userSid == "") {
+      return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
+    }
+
+    $query= "select * from user where sid = ?";
+    $emp_info = $this->select($query, [$userSid])->fetch(PDO::FETCH_ASSOC);
+
+    if (empty($emp_info)) {
+      return apiErrorResponse(400, "직원 정보가 없습니다.");
+    } else {
+      return $emp_info;
+    }
+  }
 }
 
 ?>

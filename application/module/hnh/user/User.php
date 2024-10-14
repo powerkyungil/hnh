@@ -109,6 +109,9 @@ class User extends CoreObject
       $result['data']['userSid'] = $user_row['sid'];
       $result['data']['company_code'] = $user_row['company_code'];
       $result['data']['user_type'] = $user_row['user_type'];
+
+      $_SESSION['userSid'] = $user_row['sid'];
+      $_SESSION['company_code'] = $user_row['company_code'];
     } else {
       $result['result'] = "FAIL";
       $result['message'] = "존재하지 않는 아이디 입니다.";
