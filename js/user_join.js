@@ -36,7 +36,8 @@ $(".next-btn").click(function() {
   var user_type = $("#user_type").val();
 
   if (user_type == "" ) {
-    $('#responseMessage').text("가입 유형을 선택해 주세요.");
+    $('#responseMessage').text("관리자 또는 직원을 선택해주세요.");
+    return;
   } else if (user_type == 'EMPLOYEE') {
     var company_code = $("#company_code").val().trim();
     if (company_code == "") {

@@ -37,7 +37,6 @@ class Hnh
 
     // 지구의 반지름 (미터 단위)
     $distance = $earthRadius * $c;
-    print_r($distance);
 
     return ceil($distance); // 결과를 미터 단위로 반환, 소수점 올림
   }

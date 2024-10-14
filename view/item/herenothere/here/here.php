@@ -4,7 +4,6 @@ $hnh = new Hnh();
 $company = [35.992264,128.399989];
 $location = [35.9858176,128.401408];
 $res = $hnh->attendanceCheck($company, $location);
-print_r($res);
 ?>
 
 <!doctype html>
@@ -14,8 +13,17 @@ print_r($res);
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/default.css">
 </head>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bce2443403585a880b791703016616b5&libraries=clusterer,drawing"></script>
+<style>
+    #map {
+    width: 100%;       /* 부모 요소의 100% 크기로 설정 */
+    height: 50vh;      /* 화면 높이의 50% */
+    min-height: 300px; /* 최소 높이 설정 */
+    border-radius: 4px;
+}
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
@@ -25,6 +33,16 @@ print_r($res);
         };
 
         var map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+
+        // 지도 리사이즈 처리 함수
+        function resizeMap() {
+            map.relayout(); // 지도의 크기가 변경될 때 호출
+        }
+
+        // 브라우저 크기 변화 시, 지도의 크기를 재설정
+        window.addEventListener('resize', function() {
+            resizeMap();  // 리사이즈 이벤트 발생 시 지도 크기 조정
+        });
 
         // 마커가 표시될 회사위치입니다
         var markerPosition  = new kakao.maps.LatLng(35.992264,128.399989);
@@ -112,8 +130,11 @@ print_r($res);
 </script>
 
 <body>
-    <div id="map" style="width:500px;height:400px;"></div>
-    <button type="button" id="here">출석하기</button>
-    <div id="clickMsg"></div>
+    <div class="login-container">
+        <h1>출석 체크</h1>
+        <div id="map"></div>
+        <button type="button" id="here" class="join-btn">출석하기</button>
+        <div id="clickMsg"></div>
+    </div>
 </body>
 </html>

@@ -59,6 +59,10 @@ body {
     cursor: pointer;
     margin-top: 20px;
 }
+.join-btn {
+    background-color: #BAF266;
+    color: #0D0D0D;
+}
 .between-btn-container {
     display: flex;
     justify-content: space-between;
