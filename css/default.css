@@ -47,7 +47,7 @@ body {
     border-color: #0066FF;
     outline: none;
 }
-.login-btn, .next-btn, .back-btn, .join-btn {
+.default-btn, .login-btn, .next-btn, .back-btn, .join-btn {
     font-family: NoonnuBasicGothicRegular;
     width: 100%;
     background-color: #595959;

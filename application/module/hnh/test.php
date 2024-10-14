@@ -4,15 +4,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-phpinfo();
-
-// include $_SERVER['DOCUMENT_ROOT']. "/application/function/default_func.php";
-// include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/user/user.php";
-// $user = new User();
+include $_SERVER['DOCUMENT_ROOT']. "/application/function/default_func.php";
+include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/user/user.php";
+$user = new User();
 // $data = ['userId'=>"test01", 'password'=>"1234"];
 // $result = $user->userSignIn($data);
 // echoadmin(json_encode($result));
 // print_r($result);
+$res = $user->test();
+print_r($res);
 
 // include $_SERVER['DOCUMENT_ROOT']."/application/core/CoreObject.php";
 // $core = new CoreObject();

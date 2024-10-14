@@ -11,13 +11,11 @@ print_r($res);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77f43e33e3f5423783640e40d0c6ffb8"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77f43e33e3f5423783640e40d0c6ffb8&libraries=clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bce2443403585a880b791703016616b5&libraries=clusterer,drawing"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스

@@ -27,7 +27,7 @@ class User extends CoreObject
       return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
     }
 
-    if($data['user_type'] == 'admin') { // 관리자일 경우
+    if($data['user_type'] == 'ADMIN') { // 관리자일 경우
       $query = "select * from user where userId = ?";
       $user_row = $this->select($query, [$data['userId']])->fetchAll(PDO::FETCH_ASSOC);
 
@@ -47,15 +47,18 @@ class User extends CoreObject
           $user_row = $this->select($query, [$company_code])->fetchAll(PDO::FETCH_ASSOC);
       } while (count($user_row) > 0); // 중복된 코드가 있으면 다시 생성
 
+      $company_nm = $data['company_nm'];
+
     } else {  // 직원일 경우
       if ($data['company_code'] == "") return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
 
-      $query = "select * from user where company_code = ?";
-      $user_row = $this->select($query, [$data['company_code']])->fetchAll(PDO::FETCH_ASSOC);
+      $query = "select * from user where company_code = ? and user_type = 'ADMIN' ";
+      $user_row = $this->select($query, [$data['company_code']])->fetch(PDO::FETCH_ASSOC);
       if(empty($user_row)) {
         return apiErrorResponse(400, "존재하지 않는 회사입니다. 회사코드를 확인해 주세요.");
       }
-      $company_code = $data['company_code'];
+      $company_code = $user_row['company_code'];
+      $company_nm = $user_row['company_nm'];
     }
 
     $inserts = [
@@ -67,7 +70,7 @@ class User extends CoreObject
       'join_type'=>"NORMAL",
       'work_status'=>"NOTHERE",
       'job_status'=>"WORK",
-      'company_nm'=>$data['company_nm'],
+      'company_nm'=>$company_nm,
       'company_addr1'=>$data['company_addr1'],
       'company_addr2'=>$data['company_addr2'],
       'company_lat'=>$data['company_lat'],
@@ -111,6 +114,16 @@ class User extends CoreObject
       $result['message'] = "존재하지 않는 아이디 입니다.";
     }
     return $result;
+  }
+
+  function test() {
+    $query = "select * from user where company_code = ? and user_type = 'ADMIN' ";
+      $user_row = $this->select($query, ['ABCDE'])->fetch(PDO::FETCH_ASSOC);
+      if(empty($user_row)) {
+        return apiErrorResponse(400, "존재하지 않는 회사입니다. 회사코드를 확인해 주세요.");
+      } else {
+        return $user_row['company_nm'];
+      }
   }
 }
 ?>

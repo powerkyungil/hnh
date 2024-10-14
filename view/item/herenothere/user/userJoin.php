@@ -14,6 +14,8 @@
 </head>
 <link rel="stylesheet" href="/css/default.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/js/daum_post.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -29,7 +31,7 @@
           // 선택된 값을 hidden input에 설정
           $('#user_type').val($(this).data('value'));
 
-          if ($('#user_type').val() == 'admin') {
+          if ($('#user_type').val() == 'ADMIN') {
             console.log('관리자');
             $("#company_code").remove();
           } else {
@@ -56,32 +58,33 @@
           var password = $("#password").val();
           var re_password = $("#re_password").val();
           var user_type = $("#user_type").val();
-          var company_code = $("#company_code").val().trim();
 
           console.log(user_type);
-          if (user_type == "" ) {
-            $('#responseMessage').text("가입 유형을 선택해 주세요.");
-          } else if (user_type == 'EMPLOYEE') {
-            console.log(company_code);
-            if (company_code == "") {
-              console.log("2222");
-              $('#responseMessage').text("회사코드를 입력해 주세요.");
-              return;
-            }
-          }
+          // if (user_type == "" ) {
+          //   $('#responseMessage').text("가입 유형을 선택해 주세요.");
+          // } else if (user_type == 'EMPLOYEE') {
+          //   var company_code = $("#company_code").val().trim();
+          //   console.log(company_code);
+          //   if (company_code == "") {
+          //     $('#responseMessage').text("회사코드를 입력해 주세요.");
+          //     return;
+          //   }
+          // }
 
-          if (name == "") {
-            $('#responseMessage').text("이름을 입력해 주세요.");
-          } else if (userId == "") {
-            $('#responseMessage').text("아이디를 입력하세요.");
-          } else if (password == "") {
-            $('#responseMessage').text("비밀번호를 입력해 주세요.");
-          } else if (re_password == "") {
-            $('#responseMessage').text("비밀번호를 입력해 주세요.");
-          } else {
-            $(".join_step1").hide();
+          // if (name == "") {
+          //   $('#responseMessage').text("이름을 입력해 주세요.");
+          // } else if (userId == "") {
+          //   $('#responseMessage').text("아이디를 입력하세요.");
+          // } else if (password == "") {
+          //   $('#responseMessage').text("비밀번호를 입력해 주세요.");
+          // } else if (re_password == "") {
+          //   $('#responseMessage').text("비밀번호를 입력해 주세요.");
+          // } else {
+          //   $(".join_step1").hide();
+          //   $(".join_step2").show();
+          // }
+          $(".join_step1").hide();
             $(".join_step2").show();
-          }
         });
 
         $(".back-btn").click(function() {
@@ -108,17 +111,20 @@
               password: $('#password').val(),
               re_password: $('#re_password').val(),
               company_code: $('#company_code').val(),
-              name: $('#name').val()
+              name: $('#name').val(),
+              post: $('#company_post').val(),
+              company_addr1: $('#company_addr1').val(),
+              company_addr2: $('#company_addr2').val(),
+              company_lat: $('#company_lat').val(),
+              company_lon: $('#company_lon').val()
             }
-
+            console.log(data);
             $.ajax({
                 url: '/api/hnh/user/join', // 요청을 보낼 URL
                 type: 'POST', // 요청 방식 (POST)
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(data),
                 success: function(response) {
-                  console.log("test");
-                  console.log(response);
                   if (response.result === "SUCCESS") {
                       location.href = '/view/item/herenothere/main.php'; // 로그인 성공 시 로그인 페이지로 이동
                   } else {
@@ -157,8 +163,14 @@
       </div>
 
       <div class="join_step2">
-        <input type="text" class="input-field" id="addr1" name="addr1" placeholder="주소를 입력해 주세요.">
-        <input type="text" class="input-field" id="addr2" name="addr2" placeholder="상세주소를 입력해 주세요.">
+        <div class="between-btn-container">
+          <input type="text" class="input-field" id="company_post" name="company_post" placeholder="우편번호">
+          <input type="button" class="input-field" onclick="get_address()" value="우편번호 찾기" style="width: 45%; margin-left: 12px;"><br>
+        </div>
+        <input type="text" class="input-field" id="company_addr1" name="company_addr1" placeholder="주소를 입력해 주세요.">
+        <input type="text" class="input-field" id="company_addr2" name="company_addr2" placeholder="상세주소를 입력해 주세요.">
+        <input type="hidden" class="input-field" id="company_lat" name="company_lat" placeholder="경도">
+        <input type="hidden" class="input-field" id="company_lon" name="company_lon" placeholder="위도">
         <div id="responseMessage" style="color: red; margin-top: 3px;"></div>
         <div class="between-btn-container">
           <button id="back-btn" class="back-btn between-btn">돌아가기</button>
