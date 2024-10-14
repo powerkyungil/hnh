@@ -32,10 +32,8 @@
           $('#user_type').val($(this).data('value'));
 
           if ($('#user_type').val() == 'ADMIN') {
-            console.log('관리자');
             $("#company_code").remove();
           } else {
-            console.log('직원');
             var newInput = $("<input>", {
                 id: "company_code",
                 class: "input-field",
@@ -59,32 +57,28 @@
           var re_password = $("#re_password").val();
           var user_type = $("#user_type").val();
 
-          console.log(user_type);
-          // if (user_type == "" ) {
-          //   $('#responseMessage').text("가입 유형을 선택해 주세요.");
-          // } else if (user_type == 'EMPLOYEE') {
-          //   var company_code = $("#company_code").val().trim();
-          //   console.log(company_code);
-          //   if (company_code == "") {
-          //     $('#responseMessage').text("회사코드를 입력해 주세요.");
-          //     return;
-          //   }
-          // }
+          if (user_type == "" ) {
+            $('#responseMessage').text("가입 유형을 선택해 주세요.");
+          } else if (user_type == 'EMPLOYEE') {
+            var company_code = $("#company_code").val().trim();
+            if (company_code == "") {
+              $('#responseMessage').text("회사코드를 입력해 주세요.");
+              return;
+            }
+          }
 
-          // if (name == "") {
-          //   $('#responseMessage').text("이름을 입력해 주세요.");
-          // } else if (userId == "") {
-          //   $('#responseMessage').text("아이디를 입력하세요.");
-          // } else if (password == "") {
-          //   $('#responseMessage').text("비밀번호를 입력해 주세요.");
-          // } else if (re_password == "") {
-          //   $('#responseMessage').text("비밀번호를 입력해 주세요.");
-          // } else {
-          //   $(".join_step1").hide();
-          //   $(".join_step2").show();
-          // }
-          $(".join_step1").hide();
+          if (name == "") {
+            $('#responseMessage').text("이름을 입력해 주세요.");
+          } else if (userId == "") {
+            $('#responseMessage').text("아이디를 입력하세요.");
+          } else if (password == "") {
+            $('#responseMessage').text("비밀번호를 입력해 주세요.");
+          } else if (re_password == "") {
+            $('#responseMessage').text("비밀번호를 입력해 주세요.");
+          } else {
+            $(".join_step1").hide();
             $(".join_step2").show();
+          }
         });
 
         $(".back-btn").click(function() {
@@ -118,7 +112,7 @@
               company_lat: $('#company_lat').val(),
               company_lon: $('#company_lon').val()
             }
-            console.log(data);
+
             $.ajax({
                 url: '/api/hnh/user/join', // 요청을 보낼 URL
                 type: 'POST', // 요청 방식 (POST)
