@@ -100,7 +100,7 @@ class User extends CoreObject
     $query = "select * from user where userId = ? and password = ?";
     $user_row = $this->select($query, [$data['userId'], $data['password']])->fetch(PDO::FETCH_ASSOC);
 
-    if ($user_row['sid'] != "") {
+    if (isset($user_row) && $user_row['sid'] != "") {
       $updates = ['last_join'=>date('Y-m-d H:i:s')];
       $where = ['sid'=>$user_row['sid']];
       $this->update("user", $updates, $where);
