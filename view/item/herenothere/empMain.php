@@ -13,6 +13,7 @@ $emp_info = $employee->empInfo($_GET['userSid']);
     <title>출퇴근 관리</title>
     <link rel="stylesheet" href="/css/mainPage.css">
     <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/backpage.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <script>
@@ -23,7 +24,7 @@ $emp_info = $employee->empInfo($_GET['userSid']);
     });
 </script>
 <body>
-
+    <button class="back-button" onclick="history.back()">뒤로가기</button>
     <header>
         <h3><?php echo $emp_info['company_nm'] ?></h3>
         <h1 style="color: #F2F2F2;"><?php echo $emp_info['name'] ?></h1>

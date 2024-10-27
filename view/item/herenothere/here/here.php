@@ -1,9 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/hnh.php";
-$hnh = new Hnh();
-$company = [35.992264,128.399989];
-$location = [35.9858176,128.401408];
-$res = $hnh->attendanceCheck($company, $location);
+session_start();
+
 ?>
 
 <!doctype html>
@@ -14,6 +11,7 @@ $res = $hnh->attendanceCheck($company, $location);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/backpage.css">
 </head>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bce2443403585a880b791703016616b5&libraries=clusterer,drawing"></script>
 <style>
@@ -96,7 +94,7 @@ $res = $hnh->attendanceCheck($company, $location);
         }
 
         // 출석버튼으로 위치 갱신
-        var here_button = document.getElementById("here");
+        var here_button = document.getElementById("check-btn");
         here_button.addEventListener("click", function () {
             // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
             if (navigator.geolocation) {
@@ -113,8 +111,59 @@ $res = $hnh->attendanceCheck($company, $location);
                     displayMarker(locPosition);
 
                     // TODO 현재 위치 정보 전송 및 결과 리턴
-                    var clickMsg = document.getElementById("clickMsg");
-                    clickMsg.textContent = "경도: " + lat + ", 위도: " + lon;
+                    var userSid = document.getElementById("userSid").value;
+                    // var data = {
+                    //     userSid: document.getElementById("userSid").value,
+                    //     company_code: document.getElementById("company_code").value,
+                    //     type: document.getElementById("type").value,
+                    //     location_lat: lat,
+                    //     location_lon: lon
+                    // }
+
+                    // $.ajax({
+                    //     url: '/api/hnh/user/join', // 요청을 보낼 URL
+                    //     type: 'POST', // 요청 방식 (POST)
+                    //     contentType: 'application/json; charset=utf-8',
+                    //     data: JSON.stringify(data),
+                    //     success: function(response) {
+                    //     if (response.result === "SUCCESS") {
+                    //         console.log("성공"); // 로그인 성공 시 로그인 페이지로 이동
+                    //     } else {
+                    //         console.log("실패");; // 실패 시 에러 메시지 표시
+                    //     }
+                    //     },
+                    //     error: function(xhr, status, error) {
+                    //     console.log('오류 발생 xhr: ' + xhr);
+                    //     console.log('오류 발생 status: ' + status);
+                    //     console.log('오류 발생 error: ' + error);
+                    //     }
+                    // });
+
+                    fetch('/api/hnh/attendance/check', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userSid: document.getElementById("userSid").value,
+                        company_code: document.getElementById("company_code").value,
+                        type: document.getElementById("type").value,
+                        location_lat: lat,
+                        location_lon: lon
+                    })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.code == 400) {
+                            document.getElementById('clickMsg').textContent = data.message;
+                        } else {
+                            document.getElementById('clickMsg').textContent = "출근 처리 완료!";
+                        }
+                    })
+                    .catch(error => {
+                        console.error('데이터 전송 실패:', error);
+                        // document.getElementById('clickMsg').testContent(error.message);
+                    });
 
                 });
 
@@ -130,10 +179,14 @@ $res = $hnh->attendanceCheck($company, $location);
 </script>
 
 <body>
+    <button class="back-button" onclick="history.back()">뒤로가기</button>
     <div class="login-container">
+        <input type='hidden' id='userSid' value="<?php echo $_SESSION['userSid'] ?>">
+        <input type='hidden' id='company_code' value='<?php echo $_SESSION['company_code'] ?>'>
+        <input type='hidden' id='type' value='ON'>
         <h1>출석 체크</h1>
         <div id="map"></div>
-        <button type="button" id="here" class="join-btn">출석하기</button>
+        <button type="button" id="check-btn" class="join-btn">출석하기</button>
         <div id="clickMsg"></div>
     </div>
 </body>

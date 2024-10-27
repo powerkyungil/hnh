@@ -5,13 +5,13 @@ include_once __MODULE_PATH."/user/User.php";
 $user = new User();
 
 switch ($act) {
-    // 로그인
+    // 회원가입
     case '/user/join':
         chkInvalidMethod($reqMethod, 'POST');
         $result = $user->userJoin($data);
         break;
 
-    // 회원가입
+    // 로그인
     case '/user/signin':
         chkInvalidMethod($reqMethod, "POST");
         $result = $user->userSignIn($data);

@@ -6,14 +6,16 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/backpage.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<link rel="stylesheet" href="/css/default.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/daum_post.js"></script>
 
 <body>
+  <button class="back-button" onclick="history.back()">뒤로가기</button>
   <div class="login-container">
     <h1>회원가입</h1>
     <form id="userForm" autocomplete="off">
@@ -22,10 +24,11 @@
 
       <div class="join_step1">
         <div class="user-type-container">
-          <div class="user-type-box" id="adminBox" data-value="ADMIN">관리자</div>
+          <div class="user-type-box active" id="adminBox" data-value="ADMIN">관리자</div>
           <div class="user-type-box" id="employeeBox" data-value="EMPLOYEE">직원</div>
         </div>
         <input type="hidden" id="user_type" name="user_type" value="">
+        <input type="text" class="input-field" id="company_nm" name="company_nm" placeholder="회사명을 입력하세요.">
         <input type="text" class="input-field" id="name" name="name" placeholder="이름을 입력하세요.">
         <input type="text" class="input-field" id="userId" name="userId" placeholder="아이디를 입력하세요.">
         <input type="password" class="input-field" id="password" name="password" placeholder="비밀번호를 입력하세요.">

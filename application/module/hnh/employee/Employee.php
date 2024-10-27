@@ -24,7 +24,7 @@ class Employee extends CoreObject
       $result['data']['company_nm'] = $admin_info['company_nm'];
     }
 
-    $query = "select name, work_status, here_time from user where company_code = ? and user_type = 'employee' ";
+    $query = "select sid, name, work_status, here_time from user where company_code = ? and user_type = 'employee' and job_status <> 'WAIT' ";
     $user_list = $this->select($query, [$data['company_code']])->fetchAll(PDO::FETCH_ASSOC);
 
     if (empty($user_list)) {

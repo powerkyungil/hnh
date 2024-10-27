@@ -28,6 +28,8 @@ class User extends CoreObject
     }
 
     if($data['user_type'] == 'ADMIN') { // 관리자일 경우
+      if ($data['company_nm'] == "") return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
+
       $query = "select * from user where userId = ?";
       $user_row = $this->select($query, [$data['userId']])->fetchAll(PDO::FETCH_ASSOC);
 

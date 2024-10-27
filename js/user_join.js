@@ -10,8 +10,20 @@ $('.user-type-box').on('click', function() {
   $('#user_type').val($(this).data('value'));
 
   if ($('#user_type').val() == 'ADMIN') {
+    $("#company_nm").remove();
     $("#company_code").remove();
+    var newInput = $("<input>", {
+        id: "company_nm",
+        class: "input-field",
+        name: "company_nm",
+        type: "text",
+        placeholder: "회사명을 입력하세요."
+    });
+
+    $(".user-type-container").after(newInput);
   } else {
+    $("#company_nm").remove();
+    $("#company_code").remove();
     var newInput = $("<input>", {
         id: "company_code",
         class: "input-field",
@@ -83,6 +95,7 @@ $('#join-btn').click('submit', function(event) {
       userId: $('#userId').val(),
       password: $('#password').val(),
       re_password: $('#re_password').val(),
+      company_nm: $('#company_nm').val(),
       company_code: $('#company_code').val(),
       name: $('#name').val(),
       post: $('#company_post').val(),
