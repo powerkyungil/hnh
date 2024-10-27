@@ -182,8 +182,8 @@ $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] :
 <body>
     <button class="back-button" onclick="history.back()">뒤로가기</button>
     <div class="login-container">
-        <input type='hidden' id='userSid' value="<?php echo $_SESSION['userSid'] ?>">
-        <input type='hidden' id='company_code' value='<?php echo $_SESSION['company_code'] ?>'>
+        <input type='hidden' id='userSid' value="<?php echo $userSid ?>">
+        <input type='hidden' id='company_code' value='<?php echo $company_code ?>'>
         <input type='hidden' id='type' value='ON'>
         <h1>출석 체크</h1>
         <div id="map"></div>
