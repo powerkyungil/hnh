@@ -98,12 +98,13 @@ $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] :
         // 출석버튼으로 위치 갱신
         var here_button = document.getElementById("check-btn");
         here_button.addEventListener("click", function () {
+            console.log("11111");
             // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
             if (navigator.geolocation) {
-
+                console.log("22222");
                 // GeoLocation을 이용해서 접속 위치를 얻어옵니다
                 navigator.geolocation.getCurrentPosition(function(position) {
-
+                    console.log("333333");
                     var lat = position.coords.latitude, // 위도
                         lon = position.coords.longitude; // 경도
 
