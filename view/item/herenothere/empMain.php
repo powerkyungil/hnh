@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+print_r($_SESSION);
 include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/employee/Employee.php";
 $employee = new Employee();
 $emp_info = $employee->empInfo($_GET['userSid']);
