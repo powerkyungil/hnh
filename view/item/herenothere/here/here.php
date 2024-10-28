@@ -1,5 +1,7 @@
 <?php
 session_start();
+print_r($_SESSION);
+print_r($_GET);
 $userSid = (isset($_SESSION['userSid'])) ? $_SESSION['userSid'] : "";
 $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] : "";
 ?>
