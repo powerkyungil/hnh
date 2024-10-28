@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * API 연동 처리
  * request : 	post 		/api/member/login
