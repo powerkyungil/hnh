@@ -111,7 +111,7 @@ class Attendance extends CoreObject
       $query = "select * from attendance_book where userSid = ? and month = ? and day = ?";
       $row = $this->select($query, [$data['userSid'], $month, $day])->fetch(PDO::FETCH_ASSOC);
 
-      if (isset($row)) return apiErrorResponse(400, "이미 출근처리 되었습니다.");
+      if (!empty($row)) return apiErrorResponse(400, "이미 출근처리 되었습니다.");
       $inserts = [
         'userSid'=>$data['userSid'],
         'month'=>$month,
