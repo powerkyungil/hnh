@@ -85,9 +85,11 @@ $(document).ready(function() {
                             // 상태 div 생성
                             var statusDiv = $("<div></div>").html(off).addClass("status" + date).addClass("attendance-status");
 
-                            for (let i=0; i<statusData.data.month_list.length; i++) {
-                                var day = statusData.data.month_list[i].day;
-                                $(".status"+day).html(on);
+                            if (Object.keys(statusData).length === 0) {
+                                for (let i=0; i<statusData.data.month_list.length; i++) {
+                                    var day = statusData.data.month_list[i].day;
+                                    $(".status"+day).html(on);
+                                }
                             }
 
                             cell.append(dateDiv).append(statusDiv);
