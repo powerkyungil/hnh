@@ -86,7 +86,7 @@ class Attendance extends CoreObject
     }
 
     $query = "select company_lat, company_lon from user where company_code = ? and user_type = 'ADMIN' ";
-    $company_location = $this->select($query, [$data['company_code']])->fetch(PDO::FETCH_ASSOC);
+    $company_info = $this->select($query, [$data['company_code']])->fetch(PDO::FETCH_ASSOC);
 
     $company_location = [$company_info['company_lat'], $company_info['company_lon']];
     $this_location = [$data['location_lat'], $data['location_lon']];
