@@ -8,7 +8,7 @@ switch ($act) {
   // 출퇴근 체크
   case '/attendance/check':
     chkInvalidMethod($reqMethod, 'POST');
-    $result = $att->attendance_check($data);
+    $result = $att->attendanceCheck($data);
     break;
 
   // 출퇴근 정보

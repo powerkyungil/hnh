@@ -44,7 +44,7 @@ class Attendance extends CoreObject
 
 
   // 두 좌표사이 거리
-  function attendanceCheck($company, $location)
+  function distanceCheck($company, $location)
   {
     if (empty($company) || empty($location) || $company[0] == "" || $company[1] == "" || $location[0] == "" || $location[1] == "") {
       return apiErrorResponse(400, "위치정보가 없습니다.");
@@ -80,7 +80,7 @@ class Attendance extends CoreObject
     return $result;
   }
 
-  function attendance_check($data) {
+  function attendanceCheck($data) {
     if ($data['type'] == "" || $data['userSid'] == "" || $data['company_code'] == "" || $data['location_lat'] == "" || $data['location_lon'] == "") {
       return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
     }
@@ -88,7 +88,7 @@ class Attendance extends CoreObject
     $query = "select company_lat, company_lon from user where company_code = ? and user_type = 'ADMIN' ";
     $company_location = $this->select($query, [$data['company_code']])->fetch(PDO::FETCH_ASSOC);
     $this_location = [$data['location_lat'], $data['location_lon']];
-    $check_res = $this->attendance_check($company_location, $this_location);
+    $check_res = $this->distanceCheck($company_location, $this_location);
     if ($check_res == 'N') return apiErrorResponse(400, "300미터 이내에서만 가능합니다.");
 
     $this_time = date('His');
