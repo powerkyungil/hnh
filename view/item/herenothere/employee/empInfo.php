@@ -4,6 +4,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/employee/Employee.php";
 $employee = new Employee();
 $emp_info = $employee->empInfo($_GET['emp_id']);
+
 ?>
 
 <!DOCTYPE html>
@@ -27,29 +28,31 @@ $emp_info = $employee->empInfo($_GET['emp_id']);
 
   <div class="login-container">
     <h1 style="color: #F2F2F2;"><?php echo $emp_info['name'] ?></h1>
+    <input type="hidden" id="empId" value="<?php echo $_GET['emp_id']; ?>">
+    <input type="hidden" id="month" value="<?php echo $_GET['month']?? date('Ym'); ?>">
     <div class="calendar-header">
         <button id="prev-month">◀</button>
         <h2 id="month-year"></h2>
         <button id="next-month">▶</button>
     </div>
     <table class="calendar">
-        <thead>
-            <tr>
-                <th>일</th>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-            </tr>
-        </thead>
-        <tbody id="calendar-body">
-            <!-- 날짜가 여기에 채워집니다 -->
-        </tbody>
+      <thead>
+        <tr>
+          <th>일</th>
+          <th>월</th>
+          <th>화</th>
+          <th>수</th>
+          <th>목</th>
+          <th>금</th>
+          <th>토</th>
+        </tr>
+      </thead>
+      <tbody id="calendar-body">
+          <!-- 날짜가 여기에 채워집니다 -->
+      </tbody>
     </table>
     <div><span class="material-symbols-outlined">check</span>출근 <span style="color: orange">10</span>일 | 지각 <span style="color: orange">7</span>일</div>
-    <div><span class="material-symbols-outlined">check</span>오늘 출근 시간 : <?php echo $emp_info['here_time'] ?></div>
+    <div><span class="material-symbols-outlined">check</span>오늘 출퇴근 시간 : <?php echo $emp_info['here_time'] ?></div>
 </div>
 </body>
 <script src="/js/calendar.js"></script>

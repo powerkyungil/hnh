@@ -64,14 +64,17 @@ class Attendance extends CoreObject
     if ($data['userSid'] == "" || $data['month'] == "") {
       return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
     }
+    $query= "select * from user where sid = ?";
+    $emp_info = $this->select($query, [$data['userSid']])->fetch(PDO::FETCH_ASSOC);
 
     $query = "select * from attendance_book where userSid = ? and month = ?";
-    $rows = $this->select($query, [$data['userSid'], $data['month']])->fetchAll(PDO::FETCH_ASSOC);
+    $attendance_info = $this->select($query, [$data['userSid'], $data['month']])->fetchAll(PDO::FETCH_ASSOC);
 
-    if (empty($rows)) {
+    if (empty($attendance_info)) {
       $result['message'] = "출석 이력이 없습니다.";
     } else {
-      $result['data'] = $rows;
+      $result['data']['emp_info'] = $emp_info;
+      $result['data']['month_list'] = $attendance_info;
     }
 
     return $result;
@@ -104,6 +107,10 @@ class Attendance extends CoreObject
         $updates = ['attendance_ed'=>$this_time];
         $where = ['sid'=>$row['sid']];
         $this->update("attendance_book", $updates, $where);
+
+        $updates = ['work_status'=>'OFF', 'here_time' => date('Y-m-d H:i:s')];
+        $where = ['sid'=>$data['userSid']];
+        $this->update("user", $updates, $where);
       }
       $result['message'] = "퇴근완료!";
 
@@ -119,6 +126,10 @@ class Attendance extends CoreObject
         'attendance_st'=>$this_time
       ];
       $this->insert('attendance_book', $inserts);
+
+      $updates = ['work_status'=>'ON', 'here_time' => date('Y-m-d H:i:s')];
+      $where = ['sid'=>$data['userSid']];
+      $this->update("user", $updates, $where);
 
       $result['message'] = "출근완료!";
     }

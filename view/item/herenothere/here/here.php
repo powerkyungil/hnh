@@ -3,6 +3,8 @@ session_start();
 
 $userSid = (isset($_SESSION['userSid'])) ? $_SESSION['userSid'] : "";
 $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] : "";
+$work_status = ($_GET['work_status'] == 'ON') ? "OFF" : "ON";
+$work_status_txt = ($work_status == 'ON') ? "출근" : "퇴근";
 ?>
 
 <!doctype html>
@@ -13,7 +15,9 @@ $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] :
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/modal.css">
     <link rel="stylesheet" href="/css/backpage.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bce2443403585a880b791703016616b5&libraries=clusterer,drawing"></script>
 <style>
@@ -98,13 +102,10 @@ $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] :
         // 출석버튼으로 위치 갱신
         var here_button = document.getElementById("check-btn");
         here_button.addEventListener("click", function () {
-            console.log("11111");
             // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
             if (navigator.geolocation) {
-                console.log("22222");
                 // GeoLocation을 이용해서 접속 위치를 얻어옵니다
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    console.log("333333");
                     var lat = position.coords.latitude, // 위도
                         lon = position.coords.longitude; // 경도
 
@@ -158,9 +159,14 @@ $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] :
                     .then(response => response.json())
                     .then(data => {
                         if (data.code == 400) {
-                            document.getElementById('clickMsg').textContent = data.message;
+                            document.getElementById('hereMsg').textContent = data.message;
+                            $('#myModal').fadeIn();
                         } else {
-                            document.getElementById('clickMsg').textContent = "출근 처리 완료!";
+                            var type = document.getElementById('type').value;
+                            var work_status = (type == 'ON') ? "출근" : "퇴근";
+
+                            document.getElementById('hereMsg').textContent = work_status+" 처리되었습니다.";
+                            $('#myModal').fadeIn();
                         }
                     })
                     .catch(error => {
@@ -186,11 +192,21 @@ $company_code = (isset($_SESSION['company_code'])) ? $_SESSION['company_code'] :
     <div class="login-container">
         <input type='hidden' id='userSid' value="<?php echo $userSid ?>">
         <input type='hidden' id='company_code' value='<?php echo $company_code ?>'>
-        <input type='hidden' id='type' value='ON'>
-        <h1>출석 체크</h1>
+        <input type='hidden' id='type' value='<?php echo $work_status ?>'>
+        <h1>출퇴근 체크</h1>
         <div id="map"></div>
-        <button type="button" id="check-btn" class="join-btn">출석하기</button>
+        <button type="button" id="check-btn" class="join-btn"><?php echo $work_status_txt?>하기</button>
         <div id="clickMsg"></div>
     </div>
+
+    <!-- 모달 구조 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h3 id="hereMsg" style="color: #0D0D0D;"></h3>
+            <button id="cancel-btn">확인</button>
+        </div>
+    </div>
+
+    <script src="/js/modal.js"></script>
 </body>
 </html>

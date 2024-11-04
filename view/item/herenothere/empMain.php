@@ -1,10 +1,10 @@
 <?php
 session_start();
-print_r($_SESSION);
+
 include $_SERVER['DOCUMENT_ROOT']."/application/module/hnh/employee/Employee.php";
 $employee = new Employee();
 $emp_info = $employee->empInfo($_GET['userSid']);
-
+$work_status = ($emp_info['work_status'] == 'ON') ? "퇴근" : "출근";
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,8 @@ $emp_info = $employee->empInfo($_GET['userSid']);
 <script>
     $(document).ready(function() {
         $("#here").click(function() {
-            location.href = '/view/item/herenothere/here/here.php';
+            var work_status = $("#here").val();
+            location.href = '/view/item/herenothere/here/here.php?work_status=' + work_status;
         });
     });
 </script>
@@ -30,12 +31,12 @@ $emp_info = $employee->empInfo($_GET['userSid']);
     <header>
         <h3><?php echo $emp_info['company_nm'] ?></h3>
         <h1 style="color: #F2F2F2;"><?php echo $emp_info['name'] ?></h1>
-        <div class="current-time">마지막 출근시간 : <?php echo date("Y-m-d H:i:s"); ?></div>
+        <div class="current-time">마지막 <?php echo $work_status ?>시간 : <?php echo $emp_info['here_time']; ?></div>
     </header>
 
     <div class="container">
         <div class="here-card">
-            <button id="here" class="emp-btn">출석 체크</button>
+            <button id="here" class="emp-btn" value="<?php echo $emp_info['work_status']; ?>"><?php echo $work_status ?> 하기</button>
             <button class="emp-btn manage-btn">출퇴근 기록</button>
         </div>
     </div>
