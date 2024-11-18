@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // 로그인상태일 경우 메인 화면으로 리다이렉트
 // if (isset($_SESSION['userSid'])) {
