@@ -1,5 +1,16 @@
 <?php
+session_start();
 
+// 로그인상태일 경우 메인 화면으로 리다이렉트
+// if (isset($_SESSION['userSid'])) {
+//     if ($_SESSION['user_type'] == 'ADMIN') {
+//         header("Location: /view/item/herenothere/adminMain.php?userSid=".$_SESSION['userSid']."&company_code=".$_SESSION['company_code']);
+//         exit();
+//     } else {
+//         header("Location: /view/item/herenothere/empMain.php??userSid=".$_SESSION['userSid']."&company_code=".$_SESSION['company_code']);
+//         exit();
+//     }
+// }
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +92,7 @@
         <div id="responseMessage" style='color: red; margin-top: 3px;'></div>
         <button id="login-btn" class="login-btn">로그인</button>
         <div class="link">
-            <a href="#">비밀번호 찾기</a> | <a href="/view/item/herenothere/user/userJoin.php">회원가입</a>
+            <a href="/view/item/herenothere/user/changePassword.php">비밀번호 찾기</a> | <a href="/view/item/herenothere/user/userJoin.php">회원가입</a>
         </div>
     </div>
 

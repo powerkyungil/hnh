@@ -67,6 +67,11 @@ $(".next-btn").click(function() {
   } else if (re_password == "") {
     $('#responseMessage').text("비밀번호를 입력해 주세요.");
   } else {
+    if (password != re_password) {
+      $('#responseMessage').text('비밀번호가 맞지 않습니다. 디시 확인해 주세요.');
+      return;
+    }
+
     $(".join_step1").hide();
     $(".join_step2").show();
   }

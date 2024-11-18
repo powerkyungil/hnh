@@ -23,9 +23,12 @@ class User extends CoreObject
   // 회원가입
   function userJoin($data)
   {
-    if ($data['userId'] == "" || $data['password'] == "" || $data['re_password'] == "" || $data['user_type'] == "" || $data['name'] == "") {
+    if ($data['userId'] == "" || $data['password'] == "" || $data['user_type'] == "" || $data['name'] == "") {
       return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
     }
+
+    // 비밀번호 암호화
+    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
     if($data['user_type'] == 'ADMIN') { // 관리자일 경우
       if ($data['company_nm'] == "") return apiErrorResponse(400, "필수 파라미터를 확인해주세요.");
@@ -65,7 +68,7 @@ class User extends CoreObject
 
     $inserts = [
       'userId'=>$data['userId'],
-      'password'=>$data['password'],
+      'password'=>$hashedPassword,
       'user_type'=>$data['user_type'],
       'name'=>$data['name'],
       'company_code'=>$company_code,
@@ -96,11 +99,15 @@ class User extends CoreObject
   function userSignIn($data)
   {
     if ($data['userId'] == "" || $data['password'] == "") {
-      return apiErrorResponse(400, "필수 파라미터를 확인해 주세요.");
+      return apiErrorResponse(400, "아이디와 비밀번호를 확인해 주세요.");
     }
 
-    $query = "select * from user where userId = ? and password = ?";
-    $user_row = $this->select($query, [$data['userId'], $data['password']])->fetch(PDO::FETCH_ASSOC);
+    $query = "select * from user where userId = ?";
+    $user_row = $this->select($query, [$data['userId']])->fetch(PDO::FETCH_ASSOC);
+
+    if (!password_verify($data['password'], $user_row['password'])) {
+      return apiErrorResponse(400, "비밀번호를 확인해 주세요.");
+    }
 
     if ($user_row && isset($user_row) && $user_row['sid'] != "") {
       $updates = ['last_join'=>date('Y-m-d H:i:s')];
@@ -114,6 +121,7 @@ class User extends CoreObject
 
       $_SESSION['userSid'] = $user_row['sid'];
       $_SESSION['company_code'] = $user_row['company_code'];
+      $_SESSION['user_type'] = $user_row['user_type'];
     } else {
       $result['result'] = "FAIL";
       $result['message'] = "존재하지 않는 아이디 입니다.";
@@ -121,14 +129,37 @@ class User extends CoreObject
     return $result;
   }
 
-  function test() {
-    $query = "select * from user where company_code = ? and user_type = 'ADMIN' ";
-      $user_row = $this->select($query, ['ABCDE'])->fetch(PDO::FETCH_ASSOC);
-      if(empty($user_row)) {
-        return apiErrorResponse(400, "존재하지 않는 회사입니다. 회사코드를 확인해 주세요.");
+  // 비밀번호 변경
+  function changePassword($data) {
+    if ($data['userId'] == "" || $data['new_password'] == "" || $data['old_password'] == "") {
+      return apiErrorResponse(400, "필수 파라미터를 확인해 주세요.");
+    }
+
+    $query = "select * from user where userId = ?";
+    $user_row = $this->select($query, [$data['userId']])->fetch(PDO::FETCH_ASSOC);
+
+    if (empty($user_row)) {
+      return apiErrorResponse(400, "존재하지 않는 아이디 입니다.");
+    }
+
+    if (!password_verify($data['old_password'], $user_row['password'])) {
+      return apiErrorResponse(400, "비밀번호를 확인해 주세요.");
+    } else {
+      // 비밀번호 암호화
+      $hashedPassword = password_hash($data['new_password'], PASSWORD_DEFAULT);
+      $updates = ['password'=>$hashedPassword];
+      $where = ['sid'=>$user_row['userSid']];
+      $res = $this->update("user", $updates, $where);
+      if ($res > 0) {
+        $result['result'] = "SUCCESS";
+        $result['message'] = "비밀번호 변경이 완료되었습니다.";
       } else {
-        return $user_row['company_nm'];
+        $result['result'] = "FAIL";
+        $result['message'] = "비밀번호 변경을 실패했습니다.";
       }
+    }
+
+    return $result;
   }
 }
 ?>

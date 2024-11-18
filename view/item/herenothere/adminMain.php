@@ -36,6 +36,7 @@ $company_nm = $company_info['data']['company_nm'];
 </script>
 <body>
     <button class="back-button" onclick="history.back()">뒤로가기</button>
+    <button class="logout-button">로그아웃</button>
     <header>
         <h1 style="color: #F2F2F2;"><?php echo $company_nm; ?></h1>
         <div class="current-time"><?php echo date("Y-m-d H:i:s"); ?></div>
@@ -43,7 +44,7 @@ $company_nm = $company_info['data']['company_nm'];
 
     <div class="status-container">
         <?php foreach ($emp_list as $emp) {
-            if ($emp['work_status'] == 'HERE') {
+            if ($emp['work_status'] == 'ON') {
         ?>
             <div class="employee-card" data-emp-id="<?php echo $emp['sid'] ?>">
                 <div class="employee-name"><?php echo $emp['name'] ?></div>

@@ -16,6 +16,12 @@ switch ($act) {
         chkInvalidMethod($reqMethod, "POST");
         $result = $user->userSignIn($data);
         break;
+
+    // 비밀번호 변경
+    case '/user/changeps':
+        chkInvalidMethod($reqMethod, "POST");
+        $result = $user->changePassword($data);
+        break;
 }
 
 ?>
