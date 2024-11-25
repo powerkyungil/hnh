@@ -36,7 +36,7 @@ $company_nm = $company_info['data']['company_nm'];
 </script>
 <body>
     <button class="back-button" onclick="history.back()">뒤로가기</button>
-    <button class="logout-button">로그아웃</button>
+    <!-- <button class="logout-button">로그아웃</button> -->
     <header>
         <h1 style="color: #F2F2F2;"><?php echo $company_nm; ?></h1>
         <div class="current-time"><?php echo date("Y-m-d H:i:s"); ?></div>
@@ -63,7 +63,8 @@ $company_nm = $company_info['data']['company_nm'];
         <!-- 직원 목록 추가 가능 -->
     </div>
 
-    <button class="manage-btn">직원 관리</button>
+    <button class="manage-btn">회사 정보 관리</button>
+    <!-- <button class="manage-btn">직원 관리</button> -->
 
     <!-- 모달 구조 -->
     <div id="myModal" class="modal">
